@@ -11,7 +11,8 @@ import logoutRoutes from "./src/routes/logout.js";
 import recovaeryPasswordRoutes from "./src/routes/recoveryPassword.js";
 import cors from "cors";
 import limiter from "./src/middlewares/limiter.js";
-import bannerRoutes from "./src/routes/banners.js"
+import bannerRoutes from "./src/routes/banners.js";
+import cartRoutes from "./src/routes/cart.js";
 
 //Ejecutar express
 const app = express();
@@ -40,6 +41,7 @@ app.use("/api/registerCustomers", registerCustomer);
 app.use("/api/loginCustomers", loginCustomerRoutes);
 app.use("/api/logout", logoutRoutes);
 app.use("/api/recoveryPassword", recovaeryPasswordRoutes);
-app.use("/api/banners", bannerRoutes)
+app.use("/api/banners", bannerRoutes);
+app.use("/api/cart", cartRoutes);
 
 export default app;
