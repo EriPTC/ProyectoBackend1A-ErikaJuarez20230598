@@ -27,6 +27,8 @@ providerController.insertProviders = async (req, res) => {
     DUI = DUI?.trim();
     phone = phone?.trim();
 
+
+
     //campos requeridos
     if (!name || !DUI || !phone) {
       return res.status(400).json({ message: "Field required" });
