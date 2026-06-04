@@ -4,6 +4,7 @@ import { config } from "../../config.js";
 //Array de funciones
 const wompiController = {};
 
+//generar el token
 wompiController.generarToken = async (req, res) => {
   try {
     const response = await fetch("https://id.wompi.sv/connect/token", {
@@ -32,6 +33,7 @@ wompiController.generarToken = async (req, res) => {
   }
 };
 
+//Transacción de prueba
 wompiController.paymentTest = async (req, res) => {
   try {
     //#1- Solicito los datos
@@ -50,16 +52,46 @@ wompiController.paymentTest = async (req, res) => {
       },
     );
 
-    if(!response.ok){
-        const error = await response.text()
-        return res.status(500).json({error})
+    if (!response.ok) {
+      const error = await response.text();
+      return res.status(500).json({ error });
     }
 
-    const data = await response.json()
-    return res.status(200).json(data)
+    const data = await response.json();
+    return res.status(200).json(data);
   } catch (error) {
-    console.log("error"+error)
-    return res.status(500).json({message: "Internal server error"})
+    console.log("error" + error);
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
 
+//TRANSACCIÓN REAL
+wompiController.payment3DS = async (req, res) => {
+  try {
+    //#1- Solicitar el token, y todos los valores (monto, tarjeta, nombre de titular)
+    const { token, formData } = req.body;
+
+    //hago fetch
+    const response = await fetch("https://api.wompi.sv/TransaccionCompra/3Ds", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (!response) {
+      const error = await response.text();
+      return res.status(500).json({ error });
+    }
+
+    const data = await response.json();
+    return res.status(200).json(data);
+  } catch (error) {
+    console.log("error" + error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export default wompiController;
