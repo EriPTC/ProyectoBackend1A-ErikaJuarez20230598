@@ -15,9 +15,11 @@ const storage = new CloudinaryStorage({
   cloudinary,
   params: {
     folder: "PolloPollon1A",
-    allowed_formats: ["jpg", "png", "jpeg", "pdf"],
+    allowed_formats: ["jpg", "png", "jpeg", "pdf", "doc"],
   },
 });
+
+
 
 //#3- configurar multer
 const upload = multer({ storage });
