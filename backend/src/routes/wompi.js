@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.route("/token").post(wompiController.generarToken);
 router.route("/paymentTest").post(wompiController.paymentTest);
-router.route("/payment3DS").post(wompiController.payment3DS);
+//router.route("/payment3DS").post(wompiController.payment3DS);
 
 export default router;

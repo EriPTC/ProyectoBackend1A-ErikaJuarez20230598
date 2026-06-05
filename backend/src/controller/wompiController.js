@@ -59,6 +59,9 @@ wompiController.paymentTest = async (req, res) => {
 
     const data = await response.json();
     return res.status(200).json(data);
+
+    
+    
   } catch (error) {
     console.log("error" + error);
     return res.status(500).json({ message: "Internal server error" });
