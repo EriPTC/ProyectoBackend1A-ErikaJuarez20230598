@@ -15,6 +15,7 @@ import bannerRoutes from "./src/routes/banners.js";
 import cartRoutes from "./src/routes/cart.js";
 import wompiRoutes from "./src/routes/wompi.js"
 import DeliveryDriverRoutes from "./src/routes/deliveryDrivers.js"
+import { validateAuthCookie } from "./src/middlewares/authMiddleware.js";
 
 //Ejecutar express
 const app = express();
@@ -34,9 +35,9 @@ app.use(cookieParser());
 app.use(express.json());
 
 //Creamos los endPoints
-app.use("/api/products", productsRoutes);
+app.use("/api/products",  productsRoutes);
 app.use("/api/branches", branchesRoutes);
-app.use("/api/employees", employessRoutes);
+app.use("/api/employees", validateAuthCookie(["admin"]), employessRoutes);
 app.use("/api/providers", providerRoutes);
 app.use("/api/customers", customerRoutes);
 app.use("/api/registerCustomers", registerCustomer);
