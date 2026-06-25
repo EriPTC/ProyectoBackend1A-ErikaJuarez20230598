@@ -16,6 +16,7 @@ import cartRoutes from "./src/routes/cart.js";
 import wompiRoutes from "./src/routes/wompi.js"
 import DeliveryDriverRoutes from "./src/routes/deliveryDrivers.js"
 import { validateAuthCookie } from "./src/middlewares/authMiddleware.js";
+import eventRoutes from "./src/routes/events.js"
 
 //Ejecutar express
 const app = express();
@@ -48,5 +49,6 @@ app.use("/api/banners", bannerRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/wompi", wompiRoutes)
 app.use("/api/deliveryDrivers", DeliveryDriverRoutes)
+app.use("/api/events", eventRoutes)
 
 export default app;
